@@ -16,7 +16,7 @@ Returns one omnibus p-value based on Kolmogorov-Smirnov distance from a uniform 
 \value{
 A single number representing the p-value for the omnibus test over all features.
 }
-\references{Houseman EA, Molitor J, and Marsit CJ (2013), Reference-Free Cell Mixture Adjustments in Analysis of DNA Methylation Data.  Currently a tech report, in revision for publication.}
+\references{Houseman EA, Molitor J, and Marsit CJ (2014), Reference-Free Cell Mixture Adjustments in Analysis of DNA Methylation Data.  Bioinformatics, doi: 10.1093/bioinformatics/btu029.}
 \author{E. Andres Houseman}
 \seealso{\code{\link{RefFreeEwasModel}}}
 \examples{

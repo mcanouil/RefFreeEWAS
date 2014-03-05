@@ -15,7 +15,7 @@ Generates the bootstrap samples for the reference-free method for conducting EWA
 \value{
   An array object of class \dQuote{BootRefFreeEwasModel}. Bootstraps are generated for both Beta and Bstar.
 }
-\references{Houseman EA, Molitor J, and Marsit CJ (2013), Reference-Free Cell Mixture Adjustments in Analysis of DNA Methylation Data.  Currently a tech report, in revision for publication.}
+\references{Houseman EA, Molitor J, and Marsit CJ (2014), Reference-Free Cell Mixture Adjustments in Analysis of DNA Methylation Data.  Bioinformatics, doi: 10.1093/bioinformatics/btu029.}
 \author{E. Andres Houseman}
 \seealso{\code{\link{RefFreeEwasModel}}}
 \examples{
@@ -24,7 +24,7 @@ data(RefFreeEWAS)
 
 \dontrun{
   tmpDesign <- cbind(1, rfEwasExampleCovariate)
-  tmpBstar <- rfEwasExampleBetaValues %*% tmpDesign %*% solve(t(tmpDesign)%*%tmpDesign)
+  tmpBstar <- (rfEwasExampleBetaValues %*% tmpDesign %*% solve(t(tmpDesign)%*%tmpDesign))
 
   EstDimRMT(rfEwasExampleBetaValues-tmpBstar %*% t(tmpDesign))$dim
 }

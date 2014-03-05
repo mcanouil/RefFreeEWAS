@@ -1,13 +1,13 @@
-f9886f6c4fd0db435417b445d0d8cd2d *DESCRIPTION
+4cfa0a5c78fe7be48eac6446b68fc406 *DESCRIPTION
 810b412b93b580ce1ed75272e0a0420b *NAMESPACE
 90657e1cafc58feb9d4333cd43fb18db *R/RefFreeEWAS.R
 462d180bc2be0e0a9ad4ddc46f971b18 *data/RefFreeEWAS.RData
 3ca6ac27b038960c8980b4004cfa7678 *data/datalist
 cbd6dc440a3057497e2ae6f4ffb76c99 *man/BootOneRefFreeEwasModel.Rd
-5b5d2e1ac3d243567ca92bc706907a3b *man/BootRefFreeEwasModel.Rd
+64e4c671fd6fc588e0db1fbc5dc01e40 *man/BootRefFreeEwasModel.Rd
 5b1a0140d01d089068f9c9281cf65a82 *man/EstDimIC.Rd
-26b298a242e96045806fdabe37317d37 *man/RefFreeEwasModel.Rd
-110e419c15ee52be7c5baac747eabcd1 *man/omnibusBoot.Rd
+8d2f3e25183e9f655c820de8a59be178 *man/RefFreeEwasModel.Rd
+884a3061ccd6d31cd7a4efcb98d24571 *man/omnibusBoot.Rd
 43520ff12008e7459f06965861e028b7 *man/print.BootRefFreeEwasModel.Rd
 2d979888494ba41c0d08143cf96575e9 *man/print.RefFreeEwasModel.Rd
 f9f62b2a1dad8fdb9da390df44432cb0 *man/print.summaryBootRefFreeEwasModel.Rd
