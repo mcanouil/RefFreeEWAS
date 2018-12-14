@@ -1,12 +1,9 @@
-# Default NAMESPACE created by R
-# Remove the previous line if you edit this file
-
 # Export all names
 exportPattern(".")
 
 # Import all packages listed as Imports or Depends
 import(
-  isva, quadprog 
+  quadprog 
 )
 
 S3method(print,RefFreeEwasModel)
@@ -18,4 +15,4 @@ S3method(summary,BootRefFreeEwasModel)
 S3method(deviance,RefFreeCellMix)
 
 importFrom("stats", "cor", "cutree", "deviance", "dist", "hclust",
-              "pt", "sd")
+   "pt", "sd","density", "median", "var", "rnorm")

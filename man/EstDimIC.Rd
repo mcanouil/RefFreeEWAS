@@ -13,7 +13,7 @@
 \value{
   A list containing AIC and BIC for candidate dimensions, as well as the best dimension for each. 
 }
-\references{Houseman EA, Molitor J, and Marsit CJ (2013), Reference-Free Cell Mixture Adjustments in Analysis of DNA Methylation Data.  Currently a tech report, in revision for publication.}
+\references{HOUSEMAN, Eugene Andres, MOLITOR, John, et MARSIT, Carmen J. Reference-free cell mixture adjustments in analysis of DNA methylation data. Bioinformatics, 2014, vol. 30, no 10, p. 1431-1439.}
 \author{E. Andres Houseman}
 \seealso{\code{\link{EstDimRMT}}}
 \examples{

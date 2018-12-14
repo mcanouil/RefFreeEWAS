@@ -14,14 +14,11 @@
   \item{dist.method}{Method for calculating distance matrix for methylome initialization}
   \item{\dots}{Additional parameters for hclust function for methylome initialization}
 }
-\details{Reference-free decomposition of DNA methylation matrix into cell-type distributions and cell-type
-methylomes, Y = Mu Omega^T.  Either an initial estimate of Mu must be provided, or else the number of cell types K,
-in which case RefFreeCellMixInitialize will be used to initialize.  Note that the decomposition will be based on Y,
+\details{List of Reference-free decompositions for a range of K values.  For each value of K, the decomposition is initialized by hierarchical clutering as specified by the parameters dist.method, etc.  Note that for each K, the decomposition will be based on Y,
 but Yfinal (=Y by default) will be used to determine the final value of Mu based on the last iterated value of Omega.}
-\value{
-  Object of S3 class RefFreeCellMix, containing the last iteration of Mu and Omega.
+\value{List, each element is an object of S3 class RefFreeCellMix, containing the last iteration of Mu and Omega.
 }
-\references{Houseman EA, Kile ML, et al., Reference-free deconvolution of DNA methylation data and mediation by cell composition effects (2016). http://biorxiv.org/content/early/2016/01/23/037671.
+\references{Houseman, E. Andres, Kile, Molly L., Christiani, David C., et al. Reference-free deconvolution of DNA methylation data and mediation by cell composition effects. BMC bioinformatics, 2016, vol. 17, no 1, p. 259.
 }
 \author{E. Andres Houseman}
 \seealso{\code{\link{RefFreeCellMix}}}

@@ -19,7 +19,7 @@ but Yfinal (=Y by default) will be used to determine the final value of Mu based
 \value{
   Object of S3 class RefFreeCellMix, containing the last iteration of Mu and Omega.
 }
-\references{Houseman EA, Kile ML, et al., Reference-free deconvolution of DNA methylation data and mediation by cell composition effects (2016). http://biorxiv.org/content/early/2016/01/23/037671.
+\references{Houseman, E. Andres, Kile, Molly L., Christiani, David C., et al. Reference-free deconvolution of DNA methylation data and mediation by cell composition effects. BMC bioinformatics, 2016, vol. 17, no 1, p. 259.
 }
 \author{E. Andres Houseman}
 \seealso{\code{\link{RefFreeCellMixInitialize}}}

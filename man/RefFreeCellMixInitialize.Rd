@@ -21,8 +21,6 @@ program will stop if the number of columns of Y is > 2500, unless largeOK is exp
 \value{
   An m x K matrix of mean methylation values.
 }
-\references{Houseman EA, Kile ML, et al., Reference-free deconvolution of DNA methylation data and mediation by cell composition effects (2016). http://biorxiv.org/content/early/2016/01/23/037671.
-}
 \author{E. Andres Houseman}
 \seealso{\code{\link{RefFreeCellMix}}}
 

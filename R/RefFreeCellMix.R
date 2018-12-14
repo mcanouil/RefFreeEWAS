@@ -54,18 +54,21 @@ RefFreeCellMix <- function(Y,mu0=NULL,K=NULL,iters=10,Yfinal=NULL,verbose=TRUE){
     }
     else mu0 <- RefFreeCellMixInitialize(Y,K=K,method="ward")
   }
+  
+  incrementalChangeSummary <- list()
   for(i in 1:iters){
     flag <- !apply(is.na(mu0),1,any)
     omega <- projectMix(Y[flag,],mu0[flag,])
     mu <- projectMix(t(Y),omega,sumLessThanOne=FALSE)
-    if(verbose) print(summary(abs(as.vector(mu-mu0))))
+    incrementalChangeSummary[[i]] <- summary(abs(as.vector(mu-mu0)))  
+    if(verbose) print(incrementalChangeSummary[[i]])
     mu0 <- mu
   }
   if(!is.null(Yfinal)){
     mu <- projectMix(t(Yfinal),omega,sumLessThanOne=FALSE)
   }
 
-  o <- list(Mu=mu, Omega=omega)
+  o <- list(Mu=mu, Omega=omega, incrementalChangeSummary=incrementalChangeSummary)
   class(o) <- "RefFreeCellMix"
   o
 }
@@ -89,11 +92,11 @@ RefFreeCellMixArray <- function(Y,Klist=1:5,iters=10,Yfinal=NULL,verbose=FALSE,d
    for(r in 1:nK){
      cat("Fitting K =",Klist[r],"\n")
      if(Klist[r]==1){
-       rfcmArray[[r]] <- RefFreeCellMix(Y,K=1,Yfinal=Yfinal)
+       rfcmArray[[r]] <- RefFreeCellMix(Y,K=1,Yfinal=Yfinal,iters=iters)
      }
      else{
        rfcmArray[[r]] <- RefFreeCellMix(Y,mu0=RefFreeCellMixInitialize(Y,K=Klist[r],Y.Cluster=hc),
-         Yfinal=Yfinal, verbose=verbose)
+         Yfinal=Yfinal, verbose=verbose,iters=iters)
      }
    }
    names(rfcmArray) <- Klist
@@ -188,3 +191,57 @@ RefFreeCellMixArrayDevianceBoots <- function(rfArray, Y, R=5, EPSILON=1E-9, boot
   out
 } 
 
+ImputeByMean = function(Y){
+    Yimpute=Y
+    whichMiss = apply(is.na(Y),1,which)
+    nmiss = sapply(whichMiss,sum)
+    if(any(nmiss>0)) {
+      for(i in which(nmiss>0)){
+         Yimpute[i,whichMiss[[i]]] = 
+           mean(Y[i,-whichMiss[[i]]])
+      }
+    }
+    Yimpute
+}
+
+SVDwithMissing = function(Y){
+    Yimpute = ImputeByMean(Y)
+    svd(Yimpute)
+}
+
+RefFreeCellMixArrayWithCustomStart = function(Y, mu.start, 
+   Klist = 1:5, iters = 10, Yfinal = NULL,  verbose = FALSE){
+
+  rfcmArray <- list()
+  nK <- length(Klist)
+  for (r in 1:nK) {
+        cat("Fitting K =", Klist[r], "\n")
+        if (Klist[r] == 1) {
+            rfcmArray[[r]] <- RefFreeCellMix(Y, K = 1, Yfinal = Yfinal, iters=iters)
+        }
+        else {
+            rfcmArray[[r]] <- RefFreeCellMix(Y, mu0 = mu.start[,1:Klist[r]], 
+                Yfinal = Yfinal, verbose = verbose, iters=iters)
+        }
+  }
+  names(rfcmArray) <- Klist
+  rfcmArray
+
+}
+
+RefFreeCellMixInitializeBySVD = function(Y, type=1){
+
+  Y.svd = SVDwithMissing(Y)
+
+  nn = ncol(Y.svd$u)
+  Y.svd.sign = sapply(1:nn, function(i)sign(mean(sign(Y.svd$v[,i]))))
+  Y.svd.sign[Y.svd.sign==0] = 1
+  Y.svd.u = Y.svd.sign*t(Y.svd$u)
+  if(type==1){
+    mu.start = apply(Y.svd.u,1,function(x)(sign(x-median(x))+1)/2)
+  }
+  else {
+    mu.start = apply(Y.svd.u, 1, function(x) rank(x)-0.5)/ncol(Y.svd.u)
+  }
+  mu.start
+}
