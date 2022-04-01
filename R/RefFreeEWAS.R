@@ -104,12 +104,8 @@ print.RefFreeEwasModel <- function(x, ...) {
 #     reference-free cell-mixture-adjusted EWAS
 #################################################################################
 BootOneRefFreeEwasModel <- function(mod) {
-  n2 <- dim(mod$X)[1]
-  iboot <- sample(1:n2, n2, replace = TRUE)
-
-  mu <- mod$Bstar %*% t(mod$X)
-
-  return(mu + mod$dispersion * mod$E[, iboot])
+  mod$Bstar %*% t(mod$X) + 
+    mod$dispersion * mod$E[, sample(seq_len(ncol(mod$E)), replace = TRUE)]
 }
 
 
@@ -119,10 +115,7 @@ BootOneRefFreeEwasModel <- function(mod) {
 #     reference-free cell-mixture-adjusted EWAS
 #     and return Beta estimates
 #################################################################################
-BootRefFreeEwasModel <- function(
-  mod,
-  nboot
-) {
+BootRefFreeEwasModel_old <- function(mod, nboot) {
   BetaBoot <- array(NA, dim = c(dim(mod$Beta), 2, nboot))
   dimnames(BetaBoot)[1:2] <- dimnames(mod$Beta)
   dimnames(BetaBoot)[[3]] <- c("B", "B*")
@@ -146,6 +139,47 @@ BootRefFreeEwasModel <- function(
     if (r %% 10 == 0) cat(r, "\n")
   }
   class(BetaBoot) <- "BootRefFreeEwasModel"
+  BetaBoot
+}
+
+BootRefFreeEwasModel <- function(mod, nboot) {
+  BetaBoot <- replicate(
+    n = nboot,
+    expr = {
+      isError <- TRUE
+      niter <- 0
+      while (isError & niter < 100) {
+        isError <- inherits(try({
+          bootFit <- RefFreeEwasModel(
+            Y = BootOneRefFreeEwasModel(mod),
+            X = mod$X,
+            K = ncol(mod$Lambda),
+            smallOutput = TRUE
+          )
+        }), "try-error")
+        niter <- niter + 1
+      }
+      arr <- array(
+        data = NA,
+        dim = c(dim(mod$Beta), 2),
+        dimnames = c(
+          dimnames(mod$Beta),
+          list(c("B", "B*"))
+        )
+      )
+      arr[, , 1] <- bootFit[["Beta"]]
+      arr[, , 2] <- bootFit[["Bstar"]]
+      arr
+    },
+    simplify = "array"
+  )
+  dimnames(BetaBoot) <- c(
+    dimnames(mod$Beta),
+    list(c("B", "B*")),
+    list(seq_len(nboot))
+  )
+  attr(BetaBoot, "nSample") <- nrow(mod$X)
+  attr(BetaBoot, "class") <- "BootRefFreeEwasModel"
   BetaBoot
 }
 
