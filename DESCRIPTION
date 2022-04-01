@@ -1,9 +1,16 @@
 Package: RefFreeEWAS
-Version: 2.2
-Date: 2018-12-14
 Title: EWAS using Reference-Free DNA Methylation Mixture Deconvolution
-Author: E. Andres Houseman, Sc.D.
-Maintainer: E. Andres Houseman <eahouseman@gmail.com>
+Version: 2.2
+Authors@R: 
+    c(person(given = "E. Andres",
+        family = "Houseman",
+        role = c("aut", "cre"),
+        email = "eahouseman@gmail.com"),
+    person(given = "Mickaël",
+        family = "Canouil",
+        role = c("ctb"),
+        email = "mickael.canouil@cnrs.fr",
+        comment = c(ORCID = "0000-0002-3396-454")))
 Depends: R (>= 3.2.2), quadprog
 Description: 
     Reference-free method for conducting EWAS while deconvoluting DNA methylation 
@@ -15,7 +22,4 @@ Description:
     to non-negative matrix factorization, with additional constraints 
     and additional utilities.
 License: GPL (>= 2)
-NeedsCompilation: no
-Packaged: 2018-12-14 05:31:13 UTC; EHouseman
-Repository: CRAN
-Date/Publication: 2018-12-14 06:00:03 UTC
+Encoding: UTF-8
