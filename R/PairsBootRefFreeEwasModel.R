@@ -13,6 +13,13 @@ bootstrapPairs <- function(obs, pairID) {
   obsBoot
 }
 
+PairsBootOneRefFreeEwasModel <- function(mod, pairID) {
+  n2 <- dim(mod$X)[1]
+  iboot <- bootstrapPairs(1:n2, pairID)
+  mu <- mod$Bstar %*% t(mod$X)
+  return(mu + mod$dispersion * mod$E[, iboot])
+}
+
 PairsBootRefFreeEwasModel <- function(mod, nboot, pairID) {
   BetaBoot <- array(NA, dim = c(dim(mod$Beta), 2, nboot))
   dimnames(BetaBoot)[1:2] <- dimnames(mod$Beta)
@@ -38,11 +45,4 @@ PairsBootRefFreeEwasModel <- function(mod, nboot, pairID) {
   }
   class(BetaBoot) <- "BootRefFreeEwasModel"
   BetaBoot
-}
-
-PairsBootOneRefFreeEwasModel <- function(mod, pairID) {
-  n2 <- dim(mod$X)[1]
-  iboot <- bootstrapPairs(1:n2, pairID)
-  mu <- mod$Bstar %*% t(mod$X)
-  return(mu + mod$dispersion * mod$E[, iboot])
 }
