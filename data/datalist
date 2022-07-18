@@ -1,2 +1,2 @@
-HNSCC: X.HNSCC.caseStatusAge Y.HNSCC.averageBetas
+HNSCC: Y.HNSCC.averageBetas X.HNSCC.caseStatusAge
 RefFreeEWAS: rfEwasExampleBetaValues rfEwasExampleCovariate rfEwasExampleTRUEAlpha rfEwasExampleTRUEBeta rfEwasExampleTRUEMethDMR rfEwasExampleTRUEOmega
