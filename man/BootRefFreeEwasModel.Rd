@@ -1,23 +1,12 @@
-\name{BootRefFreeEwasModel}
-\alias{BootRefFreeEwasModel}
-\title{Bootstrap for Reference-Free EWAS Model}
-\description{
- Bootstrap procedure for reference-free method for conducting EWAS while deconvoluting DNA methylation arising as mixtures of cell types.
-}
-\usage{BootRefFreeEwasModel(mod, nboot)}
-\arguments{
-  \item{mod}{model object of class RefFreeEwasModel (generated with smallOutput=FALSE).}
-  \item{nboot}{Number of bootstrap samples to generate}
-}
-\details{
-Generates the bootstrap samples for the reference-free method for conducting EWAS while deconvoluting DNA methylation arising as mixtures of cell types.
-}
-\value{
-  An array object of class \dQuote{BootRefFreeEwasModel}. Bootstraps are generated for both Beta and Bstar.
-}
-\references{Houseman EA, Molitor J, and Marsit CJ (2014), Reference-Free Cell Mixture Adjustments in Analysis of DNA Methylation Data.  Bioinformatics, doi: 10.1093/bioinformatics/btu029.}
-\author{E. Andres Houseman}
-\seealso{\code{\link{RefFreeEwasModel}}}
+#' Bootstrap for Reference-Free EWAS Model
+#'
+#' Bootstrap procedure for reference-free method for conducting EWAS while deconvoluting DNA methylation arising as mixtures of cell types.
+#'
+#' @param mod model object of class RefFreeEwasModel (generated with smallOutput=FALSE).
+#' @param nboot Number of bootstrap samples to generate
+#' @details Generates the bootstrap samples for the reference-free method for conducting EWAS while deconvoluting DNA methylation arising as mixtures of cell types.
+#' @return   An array object of class \dQuote{BootRefFreeEwasModel}. Bootstraps are generated for both Beta and Bstar.
+#' @seealso `RefFreeEwasModel`
 \examples{
 
 data(RefFreeEWAS)
@@ -27,7 +16,7 @@ data(RefFreeEWAS)
   tmpBstar <- (rfEwasExampleBetaValues %*% tmpDesign %*% solve(t(tmpDesign)%*%tmpDesign))
 
   EstDimRMT(rfEwasExampleBetaValues-tmpBstar %*% t(tmpDesign))$dim
-}
+
 
 test <- RefFreeEwasModel(
   rfEwasExampleBetaValues,
@@ -37,10 +26,10 @@ test <- RefFreeEwasModel(
 testBoot <- BootRefFreeEwasModel(test,10)
 summary(testBoot)
 
-}
-\keyword{deconvolution}
-\keyword{DNA methylation}
-\keyword{EWAS}
-\keyword{surrogate variable}
-\keyword{cell mixture}
-\keyword{bootstrap}
+
+\keyword{deconvolution
+\keyword{DNA methylation
+\keyword{EWAS
+\keyword{surrogate variable
+\keyword{cell mixture
+\keyword{bootstrap
