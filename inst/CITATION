@@ -1,0 +1,24 @@
+citHeader("To cite RefFreeEWAS in publications use:")
+
+citEntry(
+  entry = "Article",
+  title = "{Reference-Free Cell Mixture Adjustments in Analysis of DNA Methylation Data}",
+  author = paste(
+    "Houseman E. Andres [aut, cre]",
+    "John Molitor,  [aut]",
+    "Carmen J. Marsit [aut]",
+    sep = ", "
+  ),
+  journal = "Bioinformatics",
+  address = "Oxford, England",
+  year = "2014",
+  month = "may",
+  issn = "30(10):1431-9",
+  doi = "10.1093/bioinformatics/btu029",
+  textVersion = paste(
+    "Houseman E.A., Molitor J., and Marsit C.J. (2014).",
+    '"Reference-Free Cell Mixture Adjustments in Analysis of DNA Methylation Data".',
+    "Bioinformatics (Oxford, England).",
+    "doi: 10.1093/bioinformatics/btu029"
+  )
+)
