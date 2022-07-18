@@ -14,10 +14,13 @@
 \code{\link{RefFreeCellMixArrayWithCustomStart}}}
 \examples{
 data(HNSCC)
-Y.shortTest <- Y.HNSCC.averageBetas[1:500,]
+Y.shortTest <- Y.HNSCC.averageBetas[1:600, ]
 mu.start.svd <- RefFreeCellMixInitializeBySVD(Y.shortTest)
-testArray2  <- RefFreeCellMixArrayWithCustomStart(Y.shortTest, mu.start=mu.start.svd,
-    Klist=1:3,iters=5)
+testArray2  <- RefFreeCellMixArrayWithCustomStart(
+  Y.shortTest,
+  mu.start=mu.start.svd,
+  Klist=1:3,iters=5
+)
 sapply(testArray2,deviance,Y=Y.shortTest)
 
 \dontrun{
