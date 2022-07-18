@@ -17,6 +17,7 @@
 #' @return A list as in what svd produces:
 #'         U and V matrices as well as the d vector of singular values.
 #' @keywords svd
+#' @export
 #' @seealso svd
 svdSafe <- function(X) {
   sv <- try(svd(X), silent = TRUE)
