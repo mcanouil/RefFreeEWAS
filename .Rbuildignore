@@ -1,0 +1,15 @@
+^renv$
+^renv\.lock$
+^\.Rproj\.user$
+^LICENSE\.md$
+^README\.Rmd$
+^cran-comments\.md$
+^\.github$
+^codecov\.yml$
+^data-raw$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
+^.*\.Rproj$
+^data-raw$
+^.gitattributes$
