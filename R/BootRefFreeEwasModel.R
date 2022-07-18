@@ -71,11 +71,33 @@ BootRefFreeEwasModel <- function(mod, nboot) {
   BetaBoot
 }
 
+#' One Bootstrap sample for Reference-Free EWAS Model
+#'
+#' Bootstrap generation procedure for reference-free method for conducting EWAS
+#' while deconvoluting DNA methylation arising as mixtures of cell types.
+#'
+#' @param mod model object of class RefFreeEwasModel
+#'            (generated with `smallOutput = FALSE`).
+#' @details Generates one bootstrapped data set for the reference-free method
+#'          for conducting EWAS while deconvoluting DNA methylation arising as
+#'          mixtures of cell types.  Typically not run by user.
+#' @return A matrix representing a bootstrap sample of an DNA methylation assay matrix.
+#' @seealso BootRefFreeEwasModel
+#' @keywords deconvolution, DNA methylation, EWAS, surrogate variable,
+#'           cell mixture
 BootOneRefFreeEwasModel <- function(mod) {
   mod$Bstar %*% t(mod$X) +
     mod$dispersion * mod$E[, sample(seq_len(ncol(mod$E)), replace = TRUE)]
 }
 
+#' summary.BootRefFreeEwasModel
+#'
+#' Summary method for objects of type BootRefFreeEwasModel;
+#' calculates bootstrap mean and standard deviation.
+#'
+#' @param object BootRefFreeEwasModel object to summarize.
+#' @param ... Unused.
+#' @details See `RefFreeEwasModel` for example.
 summary.BootRefFreeEwasModel <- function(object, ...) {
   x <- object
 

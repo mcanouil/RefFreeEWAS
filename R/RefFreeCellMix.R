@@ -38,6 +38,13 @@ print.RefFreeCellMix <- function(x, ...) {
   cat("Omega :", dim(x$Omega)[1], " subjects x ", dim(x$Omega)[2], "cell types\n")
 }
 
+#' summary.RefFreeCellMix
+#'
+#' Summary method for objects of type RefFreeCellMix.
+#' 
+#' @param object RefFreeCellMix object to summarize.
+#' @param ... Unused.
+#' @details See `RefFreeCellMix()` for example.
 summary.RefFreeCellMix <- function(object, ...) {
   list(Mu = apply(object$Mu, 2, summary), Omega = apply(object$Omega, 2, summary), MuCorr = cor(object$Mu))
 }
@@ -162,6 +169,17 @@ ImputeByMean <- function(Y) {
   Yimpute
 }
 
+#' SVD with missing values
+#'
+#' Compute singular value decomposition on a matrix with missing values,
+#' using a naive/simple method for imputing missing values by row-mean.
+#'
+#' @param Y Matrix for which to compute SVD.
+#' @details Computes singular value decomposition on a matrix with
+#'          missing values, using a naive/simple method for imputing missing
+#'          values by row-mean.  Not recommended for matrices with very large
+#'          numbers of missing values.
+#' @return singular value decomposition (as returned by svd function).
 SVDwithMissing <- function(Y) {
   svd(ImputeByMean(Y))
 }
