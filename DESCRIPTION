@@ -1,6 +1,6 @@
 Package: RefFreeEWAS
 Title: EWAS using Reference-Free DNA Methylation Mixture Deconvolution
-Version: 2.2
+Version: 3.0.0
 Authors@R: 
     c(person(given = "E. Andres",
         family = "Houseman",
